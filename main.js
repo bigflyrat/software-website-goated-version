@@ -8,14 +8,16 @@ function wait(ms) {
 const buttonPressed = function() {
     // buttonPressed = function(){}
     setInterval(() => {
-        var rng = Math.random()
-        var roll = 1/rng
-        document.getElementById("robuckContainer").innerHTML = "<p>you gained <b>" + roll + "</b> robuck!!!</p>"
-        total += roll
-        document.getElementById("totalRobuck").innerHTML = "Total: <b>" + total + "</b>"
-        if (roll >= highest) {
-            highest = roll
-            document.getElementById("highestRoll").innerHTML = "Highest roll: <b>" + highest + "</b> (RNG: " + 1/highest + ")"
+        for (let i = 0; i < 100; i++) {
+            var rng = Math.random()
+            var roll = 1/rng
+            document.getElementById("robuckContainer").innerHTML = "<p>you gained <b>" + roll + "</b> robuck!!!</p>"
+            total += roll
+            document.getElementById("totalRobuck").innerHTML = "Total: <b>" + total + "</b>"
+            if (roll >= highest) {
+                highest = roll
+                document.getElementById("highestRoll").innerHTML = "Highest roll: <b>" + highest + "</b> (RNG: " + 1/highest + ")"
+            }
         }
     }, 1);
 }
