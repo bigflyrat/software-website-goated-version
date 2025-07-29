@@ -1,4 +1,5 @@
 let highest = 0
+let lowest = 100000000
 let total = 0
 let num = 0
 
@@ -21,6 +22,10 @@ const buttonPressed = function() {
             if (roll >= highest) {
                 highest = roll
                 document.getElementById("highestRoll").innerHTML = "Highest roll: <b>" + highest + "</b> (RNG: " + 1/highest + ")"
+            }
+            if (roll <= lowest) {
+                lowest = roll
+                document.getElementById("lowestRoll").innerHTML = "Lowest roll: <b>" + lowest + "</b> (RNG: " + 1/lowest + ")"
             }
         }
     }, 1);
