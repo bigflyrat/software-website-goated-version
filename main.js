@@ -60,3 +60,7 @@ const buttonPressed = function() {
         document.getElementById("RPM").innerHTML = "Rolls/Min: <b>" + (num/(time/60)) + "</b>"
     }, 1000);
 }
+
+const killVideo = function() {
+    document.getElementById("subwaySurfers").innerHTML = ""
+}
