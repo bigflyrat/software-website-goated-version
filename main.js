@@ -3,7 +3,23 @@ let lowest = 100000000
 let total = 0
 let num = 0
 let luck = 1
+let time = 0
 let started = false
+
+const formatSecondsToTime = function(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+
+    // Pad with leading zeros if needed
+    const formattedTime = [
+        String(hours).padStart(2, '0'),
+        String(minutes).padStart(2, '0'),
+        String(secs).padStart(2, '0')
+    ].join(':');
+
+    return formattedTime;
+}
 
 const buttonPressed = function() {
     // buttonPressed = function(){}
@@ -36,4 +52,9 @@ const buttonPressed = function() {
             document.getElementById("onOdds").innerHTML = "% " + overOrUnder + " Odds: <b>" + ((highest/num) * 100).toFixed(0) + "%</b>"
         }
     }, 1);
+    document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
+    setInterval(() => {
+        time += 1
+        document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
+    }, 1000);
 }
