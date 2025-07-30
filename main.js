@@ -2,16 +2,13 @@ let highest = 0
 let lowest = 100000000
 let total = 0
 let num = 0
-
-function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
+let luck = 1
 
 const buttonPressed = function() {
     // buttonPressed = function(){}
     setInterval(() => {
-        for (let i = 0; i < 100; i++) {
-            var rng = Math.random()
+        for (let i = 0; i < 200; i++) {
+            var rng = Math.pow(Math.random(), luck)
             var roll = 1/rng
             num += 1
             document.getElementById("robuckContainer").innerHTML = "<p>you gained <b>" + roll + "</b> robuck!!!</p>"
