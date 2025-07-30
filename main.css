@@ -5,3 +5,9 @@ body {
 button {
     margin-bottom: 10px;
 }
+
+#aboveButton {
+    display: flex;
+    gap: 20px;
+    margin-top: -20px;
+}

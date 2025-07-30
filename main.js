@@ -53,8 +53,10 @@ const buttonPressed = function() {
         }
     }, 1);
     document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
+    document.getElementById("RPM").innerHTML = "Rolls/Min: <b>0</b>"
     setInterval(() => {
         time += 1
         document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
+        document.getElementById("RPM").innerHTML = "Rolls/Min: <b>" + (num/(time/60)) + "</b>"
     }, 1000);
 }
