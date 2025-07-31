@@ -26,14 +26,13 @@ const buttonPressed = function() {
         return
     }
     started = true
+    document.getElementById("freeRobuck").innerHTML = "";
     setInterval(() => {
         let lastRoll = 0;
-        let batchTotal = 0;
         let batchHighest = highest;
         let batchLowest = lowest;
         let batchNum = num;
         let batchTotalSum = total;
-        let batchHtml = "";
         for (let i = 0; i < 500; i++) {
             var rng = Math.pow(Math.random(), luck)
             var roll = 1/rng
@@ -64,11 +63,11 @@ const buttonPressed = function() {
         document.getElementById("onOdds").innerHTML = `% ${overOrUnder} Odds: <b>${((highest/num) * 100).toFixed(0)}%</b>`;
     }, 1);
     document.getElementById("timer").innerHTML = `<b>${formatSecondsToTime(time)}</b>`
-    document.getElementById("RPM").innerHTML = "Rolls/Min: <b>0</b>"
+    document.getElementById("RPM").innerHTML = "Rolls/Sec: <b>0</b>"
     setInterval(() => {
         time += 1
         document.getElementById("timer").innerHTML = `<b>${formatSecondsToTime(time)}</b>`
-        document.getElementById("RPM").innerHTML = `Rolls/Min: <b>${(num/(time/60))}</b>`
+        document.getElementById("RPM").innerHTML = `Rolls/Sec: <b>${(num/(time))}</b>`
     }, 1000);
 }
 
