@@ -22,42 +22,53 @@ const formatSecondsToTime = function(seconds) {
 }
 
 const buttonPressed = function() {
-    // buttonPressed = function(){}
     if (started) {
         return
     }
     started = true
     setInterval(() => {
-        for (let i = 0; i < 200; i++) {
+        let lastRoll = 0;
+        let batchTotal = 0;
+        let batchHighest = highest;
+        let batchLowest = lowest;
+        let batchNum = num;
+        let batchTotalSum = total;
+        let batchHtml = "";
+        for (let i = 0; i < 500; i++) {
             var rng = Math.pow(Math.random(), luck)
             var roll = 1/rng
-            num += 1
-            document.getElementById("robuckContainer").innerHTML = "<p>you gained <b>" + roll + "</b> robuck!!!</p>"
-            total += roll
-            document.getElementById("totalRobuck").innerHTML = "Total: <b>" + total + "</b>"
-            document.getElementById("totalRolls").innerHTML = "Rolls: <b>" + num + "</b>"
-            document.getElementById("averageRobuck").innerHTML = "Average: <b>" + total/num + "</b>"
-            if (roll >= highest) {
-                highest = roll
-                document.getElementById("highestRoll").innerHTML = "Highest roll: <b>" + highest + "</b> (RNG: " + 1/highest + ")"
+            batchNum += 1
+            batchTotalSum += roll
+            lastRoll = roll
+            if (roll > batchHighest) {
+                batchHighest = roll;
             }
-            if (roll <= lowest) {
-                lowest = roll
-                document.getElementById("lowestRoll").innerHTML = "Lowest roll: <b>" + lowest + "</b> (RNG: " + 1/lowest + ")"
+            if (roll < batchLowest) {
+                batchLowest = roll;
             }
-            let overOrUnder = "Under"
-            if (highest/num >= 1) {
-                overOrUnder = "Over"
-            }
-            document.getElementById("onOdds").innerHTML = "% " + overOrUnder + " Odds: <b>" + ((highest/num) * 100).toFixed(0) + "%</b>"
         }
+        num = batchNum;
+        total = batchTotalSum;
+        highest = batchHighest;
+        lowest = batchLowest;
+        document.getElementById("robuckContainer").innerHTML = `<p>you gained <b>${lastRoll}</b> robuck!!!</p>`;
+        document.getElementById("totalRobuck").innerHTML = `Total: <b>${total}</b>`;
+        document.getElementById("totalRolls").innerHTML = `Rolls: <b>${num}</b>`;
+        document.getElementById("averageRobuck").innerHTML = `Average: <b>${total/num}</b>`;
+        document.getElementById("highestRoll").innerHTML = `Highest roll: <b>${highest}</b> (RNG: ${1/highest})`;
+        document.getElementById("lowestRoll").innerHTML = `Lowest roll: <b>${lowest}</b> (RNG: ${1/lowest})`;
+        let overOrUnder = "Under"
+        if (highest/num >= 1) {
+            overOrUnder = "Over"
+        }
+        document.getElementById("onOdds").innerHTML = `% ${overOrUnder} Odds: <b>${((highest/num) * 100).toFixed(0)}%</b>`;
     }, 1);
-    document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
+    document.getElementById("timer").innerHTML = `<b>${formatSecondsToTime(time)}</b>`
     document.getElementById("RPM").innerHTML = "Rolls/Min: <b>0</b>"
     setInterval(() => {
         time += 1
-        document.getElementById("timer").innerHTML = "<b>" + formatSecondsToTime(time) + "</b>"
-        document.getElementById("RPM").innerHTML = "Rolls/Min: <b>" + (num/(time/60)) + "</b>"
+        document.getElementById("timer").innerHTML = `<b>${formatSecondsToTime(time)}</b>`
+        document.getElementById("RPM").innerHTML = `Rolls/Min: <b>${(num/(time/60))}</b>`
     }, 1000);
 }
 
