@@ -6,6 +6,7 @@ let luck = 1
 let time = 0
 let started = false
 let subwaySurfers = `<iframe width="100%" height="100%" src="https://www.youtube.com/embed/zZ7AimPACzc?autoplay=1&mute=0&showinfo=0&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="subwayVideo"></iframe><br/>`
+let rollsThisSecond = 0
 
 const formatSecondsToTime = function (seconds) {
     const hours = Math.floor(seconds / 3600);
@@ -54,6 +55,7 @@ const buttonPressed = function () {
             batchNum += 1
             batchTotalSum += roll
             lastRoll = roll
+            rollsThisSecond += 1
             if (roll > batchHighest) {
                 batchHighest = roll;
                 pushToLogs(`New Highest: <b>${batchHighest.toLocaleString()}</b>`)
@@ -84,7 +86,8 @@ const buttonPressed = function () {
     setInterval(() => {
         time += 1
         document.getElementById("timer").innerHTML = `<b>${formatSecondsToTime(time)}</b>`
-        document.getElementById("RPM").innerHTML = `Rolls/Sec: <b>${(num/(time))}</b>`
+        document.getElementById("RPM").innerHTML = `Rolls/Sec: <b>${rollsThisSecond}</b>`
+        rollsThisSecond = 0
     }, 1000);
 }
 
