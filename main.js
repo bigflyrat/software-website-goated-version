@@ -26,6 +26,9 @@ const pushToLogs = function (text) {
     let p = document.createElement('p')
     p.innerHTML = `<b>${formatSecondsToTime(time)}</b>: ${text}`
     p.classList.add("animate__animated", "animate__fadeInDown")
+    if (text.includes("Lowest")) {
+        p.classList.add("small-text")
+    }
     document.getElementById("logs").prepend(p);
 }
 
@@ -53,7 +56,7 @@ const buttonPressed = function () {
             lastRoll = roll
             if (roll > batchHighest) {
                 batchHighest = roll;
-                pushToLogs(`New Highest: <b>${batchHighest}</b>`)
+                pushToLogs(`New Highest: <b>${batchHighest.toLocaleString()}</b>`)
             }
             if (roll < batchLowest) {
                 batchLowest = roll
@@ -65,10 +68,10 @@ const buttonPressed = function () {
         highest = batchHighest;
         lowest = batchLowest;
         document.getElementById("robuckContainer").innerHTML = `<p>you gained <b>${lastRoll}</b> robuck!!!</p>`;
-        document.getElementById("totalRobuck").innerHTML = `Total: <b>${total}</b>`;
-        document.getElementById("totalRolls").innerHTML = `Rolls: <b>${num}</b>`;
+        document.getElementById("totalRobuck").innerHTML = `Total: <b>${total.toLocaleString()}</b>`;
+        document.getElementById("totalRolls").innerHTML = `Rolls: <b>${num.toLocaleString()}</b>`;
         document.getElementById("averageRobuck").innerHTML = `Average: <b>${total/num}</b>`;
-        document.getElementById("highestRoll").innerHTML = `Highest roll: <b>${highest}</b> (RNG: ${1/highest})`;
+        document.getElementById("highestRoll").innerHTML = `Highest roll: <b>${highest.toLocaleString()}</b> (RNG: ${1/highest})`;
         document.getElementById("lowestRoll").innerHTML = `Lowest roll: <b>${lowest}</b> (RNG: ${1/lowest})`;
         let overOrUnder = "Under"
         if (highest / num >= 1) {

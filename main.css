@@ -12,7 +12,7 @@ body {
     margin-top: -20px;
 }
 
-#robuckContainer {
+.small-text {
     font-size: small;
     color: grey;
 }
