@@ -5,6 +5,7 @@ let num = 0
 let luck = 1
 let time = 0
 let started = false
+let subwaySurfers = `<iframe width="560" height="315" src="https://www.youtube.com/embed/zZ7AimPACzc?autoplay=1&mute=0&showinfo=0&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="subwayVideo"></iframe><br/>`
 
 const formatSecondsToTime = function(seconds) {
     const hours = Math.floor(seconds / 3600);
@@ -27,8 +28,8 @@ const buttonPressed = function() {
     }
     started = true
     document.getElementById("freeRobuck").innerHTML = "";
-    document.getElementById("subwaySurfers").innerHTML = `<iframe width="560" height="315" src="https://www.youtube.com/embed/zZ7AimPACzc?autoplay=1&mute=0&showinfo=0&controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen id="subwayVideo"></iframe><br/>
-            <button onclick="killVideo()">remove subway surfers</button>`
+    document.getElementById("subwaySurfers").innerHTML = subwaySurfers
+    document.getElementById("subwayButton").innerHTML = `<button onclick="killVideo()">toggle subway surfers</button>`
     setInterval(() => {
         let lastRoll = 0;
         let batchHighest = highest;
@@ -74,5 +75,9 @@ const buttonPressed = function() {
 }
 
 const killVideo = function() {
-    document.getElementById("subwaySurfers").innerHTML = ""
+    if (document.getElementById("subwaySurfers").innerHTML == "") {
+        document.getElementById("subwaySurfers").innerHTML = subwaySurfers
+    } else {
+        document.getElementById("subwaySurfers").innerHTML = ""
+    }
 }
