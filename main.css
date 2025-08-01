@@ -2,7 +2,7 @@ body {
     font-family: sans-serif;
 }
 
-button {
+#robuckButton {
     margin-bottom: 10px;
 }
 
@@ -21,8 +21,21 @@ button {
     position: absolute;
     right: 0;
     top: 0;
-    width: 375px;
+    width: 435px;
     height: 100vh;
     margin: 0;
     padding: 0;
+}
+
+#logs {
+    height: 200px;
+    width: 50%;
+    border: 2px black solid;
+    padding: 10px;
+    overflow-y: scroll;
+}
+
+#logs p {
+    margin: 5px;
+    margin-bottom: 20px;
 }
